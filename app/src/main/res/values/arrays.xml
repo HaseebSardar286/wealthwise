@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="order_types">
+        <item>Market</item>
+        <item>Limit</item>
+        <!-- Add other order types here if needed -->
+    </string-array>
+</resources>

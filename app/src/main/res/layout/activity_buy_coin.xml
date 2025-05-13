@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".activities.BuyCoinActivity">
+
+    <TextView
+        android:id="@+id/textViewBuyTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="Buy BTC" />
+
+    <TextView
+        android:id="@+id/textViewCurrentPriceLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Current Price:"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewBuyTitle" />
+
+    <TextView
+        android:id="@+id/textViewCurrentPriceValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textViewCurrentPriceLabel"
+        app:layout_constraintStart_toEndOf="@+id/textViewCurrentPriceLabel"
+        tools:text="$65,432.10" />
+
+    <!-- Order Type Selection (e.g., Market, Limit) -->
+    <TextView
+        android:id="@+id/textViewOrderTypeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Order Type:"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCurrentPriceLabel" />
+
+    <Spinner
+        android:id="@+id/spinnerOrderType"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textViewOrderTypeLabel"
+        app:layout_constraintStart_toEndOf="@+id/textViewOrderTypeLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:entries="@array/order_types" />
+        <!-- TODO: Create string-array name="order_types" in strings.xml -->
+
+    <!-- Quantity Input -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textFieldQuantityLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerOrderType"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextQuantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Quantity"
+            android:inputType="numberDecimal" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Limit Price Input (Visible only for Limit orders) -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textFieldLimitPriceLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:visibility="gone" 
+        app:layout_constraintTop_toBottomOf="@+id/textFieldQuantityLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:visibility="visible">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextLimitPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Limit Price ($)"
+            android:inputType="numberDecimal" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Estimated Cost -->
+    <TextView
+        android:id="@+id/textViewEstimatedCostLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Estimated Cost:"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textFieldLimitPriceLayout" />
+
+    <TextView
+        android:id="@+id/textViewEstimatedCostValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textViewEstimatedCostLabel"
+        app:layout_constraintStart_toEndOf="@+id/textViewEstimatedCostLabel"
+        tools:text="$65.43" />
+
+    <Button
+        android:id="@+id/buttonConfirmBuy"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Confirm Buy"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@+id/textViewEstimatedCostLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progressBarBuy"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:visibility="visible"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

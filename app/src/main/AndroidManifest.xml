@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Permissions -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- Optional: Good practice for checking network availability -->
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Wealthwise"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+        <!-- TODO: Define @string/app_name in res/values/strings.xml -->
+        <!-- TODO: Define @style/Theme.Wealthwise in res/values/themes.xml -->
+        <!-- android:usesCleartextTraffic="true" is needed for HTTP API calls during development/testing if your API is not HTTPS. Remove for production if using HTTPS only. -->
+
+        <!-- Splash Activity (Launcher)  -->
+        <activity
+            android:name=".activities.SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.NoActionBar"> <!-- Optional: Theme for no action bar on splash -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Authentication Activities -->
+        <activity
+            android:name=".activities.SignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.SignInActivity"
+            android:exported="false" />
+
+        <!-- Main Activity (Dashboard) -->
+        <activity
+            android:name=".activities.MainActivity"
+            android:exported="false" />
+        <!-- Set exported="false" as it's not the main entry point anymore -->
+
+        <!-- Trading Activities -->
+        <activity
+            android:name=".activities.BuyCoinActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.SellCoinActivity"
+            android:exported="false" />
+
+        <!-- Consultant & Chat Activities -->
+        <activity
+            android:name=".activities.ConsultantProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ChatActivity"
+            android:exported="false"
+            android:parentActivityName=".activities.ConsultantProfileActivity"> <!-- Optional: Adds Up navigation -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.ConsultantProfileActivity" />
+        </activity>
+
+    </application>
+
+</manifest>
